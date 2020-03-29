@@ -14,6 +14,14 @@ public class SelectedColorController {
     @GetMapping("/select")
     public String selectColorPage(Model model) {
 
+        String[][] colors = {
+                {"red","blue","purple","teal"},
+                {"black","orange", "yellow", "green"},
+                {"gray","silver", "olive", "lime"},
+                {"navy","lime", "aqua", "fuchsia"}
+        };
+
+        model.addAttribute("colors",colors);
         model.addAttribute("title",title);
         return "select";
     }
