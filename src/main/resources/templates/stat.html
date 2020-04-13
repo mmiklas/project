@@ -1,41 +1,42 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="${title}"></title>
-</head>
-<body>
+<div xmlns:th="https://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{fragments/layout}">
 
-    <h1 th:text="${title}"></h1>
+    <div layout:fragment="content" class="uk-section">
+        <div class="uk-container uk-container-xsmall">
 
-    <div style="max-width: 800px; margin: 50px auto">
-        <canvas id="bar-chart" width="1600" height="900"></canvas>
+            <h1 class="uk-heading-divider" th:text="${title}"></h1>
+
+            <div style="max-width: 800px; margin: 50px auto">
+                <canvas id="bar-chart" width="1600" height="900"></canvas>
+            </div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+            <script th:inline="javascript">
+
+                new Chart(document.getElementById("bar-chart"), {
+                    type: 'bar',
+                    data: {
+                        labels: [[${dataMap.keySet()}]],
+                        datasets: [
+                            {
+                                backgroundColor: [[${labels}]],
+                                data: [[${dataMap.values()}]]
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: { display: false },
+                        scales: {
+                            yAxes: [{ticks: {beginAtZero: true}}]
+                        }
+                    }
+                });
+
+            </script>
+
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
-    <script th:inline="javascript">
-
-        new Chart(document.getElementById("bar-chart"), {
-            type: 'bar',
-            data: {
-                labels: [[${dataMap.keySet()}]],
-                datasets: [
-                    {
-                        backgroundColor: [[${labels}]],
-                        data: [[${dataMap.values()}]]
-                    }
-                ]
-            },
-            options: {
-                legend: { display: false },
-                scales: {
-                    yAxes: [{ticks: {beginAtZero: true}}]
-                }
-            }
-        });
-
-    </script>
-
-</body>
-</html>
+</div>

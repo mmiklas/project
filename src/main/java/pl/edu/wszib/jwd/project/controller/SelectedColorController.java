@@ -20,7 +20,7 @@ public class SelectedColorController {
     @Value("${app.title.select}")
     private String title;
 
-    @GetMapping({"/select/{color}","/select"})
+    @GetMapping({"/","/select/{color}","/select"})
     public String selectColorPage(@PathVariable(required = false) String color, Model model) {
 
         if (!StringUtils.isEmpty(color)) {

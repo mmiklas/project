@@ -1,27 +1,31 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="${title}"></title>
-</head>
-<body>
+<div xmlns:th="https://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{fragments/layout}">
 
-    <h1 th:text="${title}"></h1>
+    <div layout:fragment="content" class="uk-section">
+        <div class="uk-container uk-container-xsmall">
 
-    <table>
-        <tr>
-            <th width="50">ID</th>
-            <th width="50">Kolor</th>
-            <th width="200">Data</th>
-        </tr>
+            <h1 class="uk-heading-divider" th:text="${title}"></h1>
 
-        <tr th:each="selectedColor : ${selectedColors}">
-            <td th:text="${selectedColor.id}"></td>
-            <td th:text="${selectedColor.color}"></td>
-            <td th:text="${selectedColor.ctime}"></td>
-        </tr>
+            <table class="uk-table uk-table-striped uk-table-hover uk-table-small uk-width-large">
+                <tr>
+                    <th>ID</th>
+                    <th th:colspan="2">Kolor</th>
+                    <th>Data</th>
+                </tr>
 
-    </table>
+                <tr th:each="selectedColor : ${selectedColors}">
+                    <td th:text="${selectedColor.id}"></td>
+                    <td th:attr="bgcolor=${selectedColor.color}"></td>
+                    <td th:text="${selectedColor.color}"></td>
+                    <td th:text="${#calendars.format(selectedColor.ctime,'dd MMMM yyyy HH:mm:ss')}"></td>
+                </tr>
 
-</body>
-</html>
+            </table>
+
+            <div class="uk-padding"></div>
+
+        </div>
+    </div>
+
+</div>

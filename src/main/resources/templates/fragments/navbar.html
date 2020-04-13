@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<body>
+
+    <nav th:fragment="navbar" class="uk-navbar-container" uk-navbar uk-sticky>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-parent" th:classappend="${title == 'Wybierz kolor' ? 'uk-active' : ''}"><a th:href="@{/select}">Wybierz kolor</a></li>
+                <li class="uk-parent" th:classappend="${title == 'Dane' ? 'uk-active' : ''}"><a th:href="@{/data}">Dane</a></li>
+                <li class="uk-parent" th:classappend="${title == 'Statystyki' ? 'uk-active' : ''}"><a th:href="@{/stat}">Statystyki</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</body>
+</html>
